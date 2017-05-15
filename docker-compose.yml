@@ -1,0 +1,22 @@
+version: '3'
+services:
+  mysql:
+    image: mysql
+    restart: always
+    env_file:
+      - docker.env
+    volumes:
+      - ./mysql:/var/lib/mysql
+  wordpress:
+    image: wordpress
+    ports:
+      - "8080:80"
+    restart: always
+    volumes:
+      - ./wordpress/wp-content:/var/www/html/wp-content
+      - ./wordpress/wp-config.php:/var/www/html/wp-config.php
+      - ./wp-config/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
+    links:
+      - mysql
+    depends_on:
+      - mysql
