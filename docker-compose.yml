@@ -1,4 +1,4 @@
-version: '3'
+version: '2'
 services:
   mysql:
     image: mysql
@@ -15,7 +15,7 @@ services:
     volumes:
       - ./wordpress/wp-content:/var/www/html/wp-content
       - ./wordpress/wp-config.php:/var/www/html/wp-config.php
-      - ./wp-config/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
+      - ./config/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
     links:
       - mysql
     depends_on:
